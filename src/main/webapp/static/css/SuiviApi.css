@@ -1,0 +1,110 @@
+.main-container {
+	margin-top:80px
+}
+
+div.thumbnail-hover:hover{
+	background-color: #e6e6e6;
+	border-color: #adadad;
+	colr: #333;
+	cursor:pointer;
+}
+
+.cursor-pointer:hover{
+	cursor:pointer;
+}
+
+th a:hover, th a:focus{
+	cursor:pointer;
+}
+
+
+div.thumbnail-hover:active.focus,
+div.thumbnail-hover:active:focus,
+div.thumbnail-hover:active.hover,
+div.thumbnail-hover:active:hover{
+	background-color: #d4d4d4;
+	border-color: #8c8c8c;
+	colr: #333;
+}
+
+span.control-read{
+	font-weight: 700;
+	margin-bottom:5px;
+	max-width:100%;
+	display:inline-block;
+}
+
+div.divider-block{
+	height: 1px;
+	width: 100%;
+	display: block;
+	margin: 9px 0;
+	overflow: hidden;
+	background-color: #e5e5e5;
+}
+
+.modal-lg{
+	width: 1024px;
+}
+
+/* Custom color */
+/* panel */
+.panel-env > .panel-heading{
+	background-color: #afafd8;
+    border-color: #9292c9;
+    color: #5151a2;
+}
+
+/* nav*/
+.nav-info{
+	background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+
+.nav-success{
+	background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.nav-warning{
+	background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+
+.nav-env{
+	background-color: #afafd8;
+    border-color: #9292c9;
+}
+
+
+.has-danger .form-control {
+    border-color: #a94442;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+.has-danger .checkbox, .has-danger .checkbox-inline, .has-danger .control-label, .has-danger .help-block, .has-danger .radio, .has-danger .radio-inline, .has-danger.checkbox label, .has-danger.checkbox-inline label, .has-danger.radio label, .has-danger.radio-inline label {
+    color: #a94442;
+}
+
+
+.table-sort-icon:after {
+  content: '\25b2';   /* BLACK UP-POINTING TRIANGLE */
+}
+.table-sort-icon.reverse:after {
+  content: '\25bc';   /* BLACK DOWN-POINTING TRIANGLE */
+}
+
+/* Animation */
+.in-fading.ng-enter, .in-fading.ng-leave-active{
+	transition: 0.5s ease;
+	opacity:0;
+}
+
+.in-fading.ng-enter-active, .in-fading.ng-leave{
+	opacity:1;
+}
+
+/* fix chrome */
+.form-horizontal .fix-checkbox{
+	min-height: 27px;
+}

@@ -1,0 +1,87 @@
+<div class="panel panel-env">
+	<div class="panel-heading">Recherche Environnement</div>
+	<div class="panel-body">
+		<form class="form-horizontal" data-ng-submit="envVm.search()">
+			<div class="form-group">
+				<label for="inputListEnvId" class="col-md-2 control-label">Environnement</label>
+				<div class="col-md-4">
+					<select size="6" multiple class="form-control" data-ng-model="envVm.searchParams.listEnv" id="inputListEnvId">
+						<option data-ng-repeat="option in envVm.listEnv" value="{{::option.codeAdabo}}">{{::option.codeAdabo}}</option>
+					</select>			
+				</div>	
+				<label for="inputListStatutId" class="col-md-2 control-label">Statut</label>
+				<div class="col-md-4">
+					<select size="6" multiple class="form-control" data-ng-model="envVm.searchParams.listStatut" id="inputListStatutId">
+						<option data-ng-repeat="option in envVm.listStatut" value="{{::option.id}}">{{::option.id}}</option>
+					</select>	
+				</div>								
+			</div>
+			<div class="form-group">
+				<label for="inputArtifactId" class="col-md-2 control-label">Artifact Id</label>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="inputArtifactId" data-ng-model="envVm.searchParams.artifactId"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputLastId" class="col-md-2 control-label">Dernier d&eacute;ploy&eacute;</label>
+				<div class="col-md-4">
+					<input class="fix-checkbox" type="checkbox" id="inputLastId" data-ng-model="envVm.searchParams.lastDeployed"></input>
+				</div>
+			</div>
+			<div class="row">
+				
+				<a href="api/env/file" target="_self" type="button" class="btn btn-warning">Download</a>
+				<button type="submit" class="btn btn-success pull-right">Rechercher</button>
+			</div>
+			<div class="row">
+				<span class="pull-right"><em><small>R&eacute;sultat limit&eacute &agrave; 50 occurences</small></em></span>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-env in-fading" data-ng-if="envVm.listSearchEnv && !envVm.errorSearch">
+	<div class="panel-heading">Liste des Environnements</div>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>
+					<a data-ng-click="envVm.sortBy('environnement')">Env.</a>
+					<span class="table-sort-icon" data-ng-show="envVm.orderCol === 'environnement'" data-ng-class="{reverse: envVm.orderReverse}"></span>				
+				</th>
+				<th>
+					<a data-ng-click="envVm.sortBy('artifactId')">Nom APIM</a>
+					<span class="table-sort-icon" data-ng-show="envVm.orderCol === 'artifactId'" data-ng-class="{reverse: envVm.orderReverse}"></span>
+				</th>
+				<th>Version</th>
+				<th>Code App.</th>
+				<th>
+					<a data-ng-click="envVm.sortBy('lastModified')">Der. D&eacute;ployement</a>
+					<span class="table-sort-icon" data-ng-show="envVm.orderCol === 'lastModified'" data-ng-class="{reverse: envVm.orderReverse}"></span>
+				</th>
+				<th>
+					<a data-ng-click="envVm.sortBy('statut')">Statut</a>
+					<span class="table-sort-icon" data-ng-show="envVm.orderCol === 'statut'" data-ng-class="{reverse: envVm.orderReverse}"></span>
+				</th>
+				<th>Der.</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="cursor-pointer" data-ng-repeat="env in envVm.listSearchEnv | orderBy : envVm.orderCol : envVm.orderReverse track by (env.id + env.environnement)" 
+				data-ng-click="envVm.gotToApimc(env.id)">
+				
+				<td data-ng-bind="::env.environnement"></td>
+				<td data-ng-bind="::env.artifactId"></td>
+				<td data-ng-bind="::env.version"></td>
+				<td data-ng-bind="::env.codeApplication"></td>
+				<td data-ng-bind="::env.lastModified | date:'yyyy-MM-dd HH:mm:ss'"></td>
+				<td><span class="label label-{{::env.classe}}" data-ng-bind="::env.statut"></span></td>
+				<td><input type="checkbox" disabled data-ng-model="::env.lastDeployed"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="panel-body" data-ng-if="envVm.errorSearch">
+		<div class="alert alert-danger" >Erreur lors du chargement des donn&eacute;e</div>
+	</div>
+</div>

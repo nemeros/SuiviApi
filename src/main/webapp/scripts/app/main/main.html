@@ -1,0 +1,83 @@
+<div role="document">
+	<div class="panel panel-info">
+		<div class="panel-heading">Liste des derni&egrave;res API</div>
+		<div class="panel-body">
+			<div class="row in-fading" data-ng-if="mainVm.listApimc && !mainVm.errorApimc">
+				<div class="col-md-4" data-ng-repeat="apimc in mainVm.listApimc track by apimc.id">
+					<div class="thumbnail thumbnail-hover text-center" data-ng-click="mainVm.processSelectedApimc(apimc)">
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="control-read" data-ng-bind="::apimc.codeApplication"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="control-read" data-ng-bind="::apimc.apim.artifactId"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="label label-info control-read" data-ng-bind="::apimc.version"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="label control-read label-{{::apimc.statut.classe}}" >{{::apimc.statut.id}}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="control-read" data-ng-bind="::apimc.dtModification | date:'yyyy-MM-dd HH:mm:ss'"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="in-fading" data-ng-if="!mainVm.listApimc && !mainVm.errorApimc"><strong>Chargement ...</strong></div>
+			<div data-ng-if="mainVm.errorApimc" class="alert alert-danger">
+				Erreur lors du chargement des donn&eacute;e
+			</div>
+		</div>
+	</div>
+			
+	<div class="panel panel-success">
+		<div class="panel-heading">Liste des derni&egrave;res Ressources</div>
+		<div class="panel-body">
+			<div class="row in-fading" data-ng-if="mainVm.listRessc && !mainVm.errorRessc">
+				<div class="col-md-4" data-ng-repeat="ressc in mainVm.listRessc track by ressc.id">
+					<div class="thumbnail thumbnail-hover text-center" data-ng-click="mainVm.processSelectedRessc(ressc)">
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="control-read" data-ng-bind="::ressc.codeApplication"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="control-read" data-ng-bind="::ressc.ress.artifactId"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="label label-info control-read" data-ng-bind="::ressc.version"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="label control-read label-{{::ressc.statut.classe}}" >{{::ressc.statut.id}}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<span class="control-read" data-ng-bind="::ressc.dtModification | date:'yyyy-MM-dd HH:mm:ss'"></span>
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+			<div class="in-fading" data-ng-if="!mainVm.listApimc && !mainVm.errorRessc"><strong>Chargement ...</strong></div>
+			<div data-ng-if="mainVm.errorRessc" class="alert alert-danger">
+				Erreur lors du chargement des donn&eacute;e
+			</div>
+		</div>
+	</div>
+</div>

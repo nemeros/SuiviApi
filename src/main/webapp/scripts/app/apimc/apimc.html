@@ -1,0 +1,64 @@
+<div class="panel panel-info">
+	<div class="panel-heading">Recherche d'une API</div>
+	<div class="panel-body">
+		<form class="form-horizontal" data-ng-submit="apimcVm.search()">
+			<div class="form-group">
+				<label for="inputCodeApp" class="col-md-2 control-label">Code application</label>
+				<div class="col-md-4">
+					<input type="text" maxlength="4" class="form-control" id="inputCodeApp" data-ng-model="apimcVm.searchParams.codeApplication"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputArtifactId" class="col-md-2 control-label">Artifact Id</label>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="inputArtifactId" data-ng-model="apimcVm.searchParams.artifactId"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputBasePathId" class="col-md-2 control-label">Base Path</label>
+				<div class="col-md-4">
+					<input type="text" class="form-control" id="inputBasePathId" data-ng-model="apimcVm.searchParams.basePath"></input>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputArtifactId" class="col-md-2 control-label">Statut</label>
+				<div class="col-md-4">
+					<select size="3" multiple class="form-control" data-ng-model="apimcVm.searchParams.listStatutSelected">
+						<option data-ng-repeat="option in apimcVm.listStatus" value="{{::option.id}}">{{::option.id}}</option>
+					</select>
+				</div>
+			</div>
+			<div>
+				<span><em><small>R&eacute;sultat limit&eacute &agrave; 50 occurences</small></em></span>
+				<button type="submit" class="btn btn-success pull-right">Rechercher</button>
+			</div>
+			
+		</form>
+	</div>
+</div>
+
+<div class="panel panel-info in-fading" data-ng-if="apimcVm.listApimc.length > 0 && !apimcVm.isError">
+	<div class="panel-heading">Liste des API</div>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Artifact Id</th>
+				<th>Code App.</th>				
+				<th>Base Path</th>
+				<th>Version</th>
+				<th>Last Mod</th>				
+				<th>Statut</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="cursor-pointer" data-ng-repeat="apimc in apimcVm.listApimc track by apimc.id" data-ng-click="apimcVm.goToApimc(apimc)">
+				<td data-ng-bind="::apimc.apim.artifactId"></td>
+				<td data-ng-bind="::apimc.codeApplication"></td>
+				<td data-ng-bind="::apimc.basePath"></td>
+				<td data-ng-bind="::apimc.version"></td>
+				<td data-ng-bind="::apimc.lastModified | date:'yyyy-MM-dd'"></td>
+				<td><span class="label label-{{::apimc.statut.classe}}" data-ng-bind="::apimc.statut.id"></span></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
